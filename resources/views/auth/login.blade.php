@@ -86,8 +86,15 @@
                     @endif
 
                     <button type="submit" class="btn btn-maroon w-100">Login</button>
+
+                    <div style="margin-top: 10px; text-align: center;">
+                        <p>AKSES DEMO</p>
+                        <p>username : admin</p>
+                        <p>password : admin123</p>
+                    </div>
                 </form>
             </div>
+
         </div>
     </div>
 </body>

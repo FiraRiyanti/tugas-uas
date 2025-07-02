@@ -70,7 +70,7 @@
         <div class="d-flex justify-content-between align-items-center navbar-dashboard">
             <h4>Sistem Mitra Marketplace</h4>
             <div>
-                Selamat Datangg <strong>{{ session('nama') }}</strong>
+                Selamat Datang <strong>{{ session('nama') }}</strong>
             </div>
         </div>
 

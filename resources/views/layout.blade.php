@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <title>Sistem Mitra Marketplace</title>
@@ -53,6 +54,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Sidebar -->
@@ -62,7 +64,13 @@
         </div>
         <a href="{{ url('/dashboard') }}">Dashboard</a>
         <a href="{{ route('mitra.index') }}">Data Mitra</a>
-        <a href="{{ route('logout') }}" class="logout">Logout</a>
+        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            Logout
+        </a>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
     </div>
 
     <!-- Main Content -->
@@ -70,7 +78,7 @@
         <div class="d-flex justify-content-between align-items-center navbar-dashboard">
             <h4>Sistem Mitra Marketplace</h4>
             <div>
-                Selamat Datang <strong>{{ session('nama') }}</strong>
+                Selamat Datang <strong>{{ Auth::user()->nama }}</strong>
             </div>
         </div>
 
@@ -78,4 +86,5 @@
     </div>
 
 </body>
+
 </html>

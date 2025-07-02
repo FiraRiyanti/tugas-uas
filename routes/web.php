@@ -11,25 +11,21 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-// Route untuk login
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login')->middleware('guest');
-Route::post('/login', [AuthController::class, 'login']);
-
-// Route untuk logout
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
-// Route untuk data mitra — hanya bisa diakses jika sudah login
-Route::middleware(['ceklogin'])->group(function () {
-    Route::resource('mitra', MitraController::class);
+// Route untuk login/logout (tidak perlu auth)
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
 });
 
-Route::get('/mitra-export-pdf', [MitraController::class, 'exportPDF'])->name('mitra.export-pdf');
+// Route untuk logout (perlu auth)
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('ceklogin');
-
-Route::middleware(['ceklogin'])->group(function () {
+// Route yang memerlukan authentication
+Route::middleware(['auth'])->group(function () {
+    // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    
+    // Mitra routes
     Route::resource('mitra', MitraController::class);
+    Route::get('/mitra-export-pdf', [MitraController::class, 'exportPDF'])->name('mitra.export-pdf');
 });

@@ -5,7 +5,7 @@
         <h2 class="mb-4">Dashboard</h2>
 
         <div class="alert alert-info">
-            Selamat datang, <strong>{{ session('nama') }}</strong>! Anda login sebagai admin.
+            Selamat datang, <strong>{{ Auth::user()->nama }}</strong>! Anda login sebagai admin.
         </div>
 
         <div class="row">
